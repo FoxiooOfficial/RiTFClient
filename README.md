@@ -7,4 +7,4 @@ RiTF is a Client-Host application that allows you to get photos/videos with tags
 - RiTF (Client) is a lightweight Android app (requiring API 8+) written in Java 7 and the raw SDK (without Android Studio) that sends unencrypted HTTP GET requests to the Host to retrieve data from specific tags (as on Booru-style sites).
 - RiTF (Host) consists of Python scripts running on a computer that acts as an intermediary between the Client and the endpoint; its purpose is to translate API requests so they are understandable to the Client by sending JSON; it can also compress photos and videos.
 
-The project is primarily designed so that the connection between the Client and the Host is over a LAN.
+It is not recommended to place the Host on a public network. Communication between the Client and the Host uses unencrypted HTTP (for compatibility reasons), so it is possible that someone could intercept the Client’s requests or photos sent by the Host. Use a LAN connection instead.
