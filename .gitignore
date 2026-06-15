@@ -1,0 +1,14 @@
+bin/
+gen/
+
+.local.properties
+local.properties
+.classpath
+.project
+.settings/
+
+Thumbs.db
+.DS_Store
+
+*.log
+*.tmp
