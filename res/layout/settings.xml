@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <!-- url -->
+    <TextView
+        android:text="Host URL:"
+        
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <EditText
+        android:id="@+id/edittext_url"
+        android:inputType="textUri"
+
+        android:hint="http://192.168.33.20:5000/"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <!-- timeout -->
+    <TextView
+        android:text="Timeout (in milliseconds):"
+
+        android:layout_marginTop="10dp"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <EditText
+        android:id="@+id/edittext_timeout"
+
+        android:hint="3000"
+        android:inputType="number"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    />
+
+    <!-- more buttons -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+    >
+
+        <Button
+            android:id="@+id/button_save"
+            android:text="Save settings"
+
+            android:layout_marginTop="20dp"
+
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+        />
+
+      </LinearLayout>  
+
+</LinearLayout>
