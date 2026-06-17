@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+    <!-- searchbar -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+    >
+            <Button
+                android:id="@+id/button_back"
+                android:text="Back"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+
+            <EditText
+                android:id="@+id/edittext_tags"
+                android:hint="Search tags..."
+
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+            />
+
+            <Button
+                android:id="@+id/button_search"
+                android:text="Search"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <!-- content -->
+    <GridView
+        android:id="@+id/gridview"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        
+        android:numColumns="auto_fit"
+        android:columnWidth="240dp"
+
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
+
+        android:padding="4dp"
+        android:stretchMode="columnWidth"
+    />
+
+</LinearLayout>

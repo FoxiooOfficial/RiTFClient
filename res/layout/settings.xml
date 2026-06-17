@@ -1,66 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
     >
-
-    <!-- url -->
-    <TextView
-        android:text="Host URL:"
-        
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-    />
-
-    <EditText
-        android:id="@+id/edittext_url"
-        android:inputType="textUri"
-
-        android:hint="http://192.168.33.20:5000/"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-    />
-
-    <!-- timeout -->
-    <TextView
-        android:text="Timeout (in milliseconds):"
-
-        android:layout_marginTop="10dp"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-    />
-
-    <EditText
-        android:id="@+id/edittext_timeout"
-
-        android:hint="3000"
-        android:inputType="number"
-
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-    />
-
-    <!-- more buttons -->
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-    >
-
-        <Button
-            android:id="@+id/button_save"
-            android:text="Save settings"
-
-            android:layout_marginTop="20dp"
-
-            android:layout_width="wrap_content" 
+        <!-- url -->
+        <TextView
+            android:text="Host URL:"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+        <EditText
+            android:id="@+id/edittext_url"
+            android:inputType="textUri"
+            android:hint="http://192.168.33.20:5000/"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
         />
 
-      </LinearLayout>  
+        <!-- timeout -->
+        <TextView
+            android:text="Timeout (in milliseconds):"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+        <EditText
+            android:id="@+id/edittext_timeout"
+            android:hint="3000"
+            android:inputType="number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
 
-</LinearLayout>
+        <!-- gallery -->
+        <TextView
+            android:text="Gallery display limit:"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+        <EditText
+            android:id="@+id/edittext_limit"
+            android:hint="15"
+            android:inputType="number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+
+        <!-- background -->
+        <TextView
+            android:text="Background color (in HEX):"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+        <EditText
+            android:id="@+id/edittext_colorbg"
+            android:hint="#000000"
+            android:inputType="text"
+            android:maxLength="7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+
+        <!-- buttons! -->
+        <!--
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+        -->
+
+            <Button
+                android:id="@+id/button_deafult"
+                android:text="Restore defaults and exit"
+                android:layout_marginTop="50dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            />
+
+            <Button
+                android:id="@+id/button_exit"
+                android:text="Exit without saving"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            />
+
+            <Button
+                android:id="@+id/button_save"
+                android:text="Save and exit"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            />
+
+        <!--</LinearLayout>--> 
+
+    </LinearLayout>
+
+</ScrollView>

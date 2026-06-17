@@ -3,10 +3,12 @@ package com.foxioo.ritfclient;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.Button;
 import android.view.View;
 
@@ -15,16 +17,25 @@ import org.json.JSONObject;
 public class MainActivity extends Activity
 {
     /** Global */
-    int _TIMEOUT_VALUE = 5000;
-    String URL_HOST = "http://192.168.33.20:5000/";
+    int _TIMEOUT_VALUE;
+    String _URL_HOST;
+    String _COLOR_BG;
+
+    /** Host variables */
+    long count = 0;
+    int hostversion = 0;
 
     /** Objects */
     private ApiClient api_client;
     
+    private Button button_search;
+
     private TextView text_status;
+    private TextView text_count;
+
     private Button button_refresh_api;
     private Button button_settings;
-    
+    private Button button_about;
     
     /** Called when the activity is first created. */
     @Override
@@ -35,8 +46,19 @@ public class MainActivity extends Activity
         
         //api_client = new ApiClient(URL_HOST, _TIMEOUT_VALUE);
         
+        // go to gallery
+        button_search = (Button)findViewById(R.id.button_search);
+        button_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GalleryActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // status text displaying its connected or not
         text_status = (TextView)findViewById(R.id.text_status);
+        text_count = (TextView)findViewById(R.id.text_count);
         
         // refreshing connection
         button_refresh_api = (Button)findViewById(R.id.button_refresh_api);
@@ -58,6 +80,16 @@ public class MainActivity extends Activity
             }
         });
 
+        // about project
+        button_about = (Button)findViewById(R.id.button_about);
+        button_about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //new API_CheckStatus().execute();
     }
 
@@ -66,20 +98,28 @@ public class MainActivity extends Activity
         super.onResume();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        URL_HOST = prefs.getString("settings_url_host", "http://192.168.33.20:5000/");
-        _TIMEOUT_VALUE = prefs.getInt("settings_timeout", 3000);
+        _URL_HOST = prefs.getString("settings_url_host", GlobalVariables._URL_HOST);
+        _TIMEOUT_VALUE = prefs.getInt("settings_timeout", GlobalVariables._TIMEOUT_VALUE);
+        _COLOR_BG = prefs.getString("settings_color_bg", GlobalVariables._COLOR_BG);
 
         // updating api class variables
-        if (api_client == null)
-        {
-            api_client = new ApiClient(URL_HOST, _TIMEOUT_VALUE);
+        if (api_client == null) {
+            api_client = new ApiClient(_URL_HOST, _TIMEOUT_VALUE);
         }
-        else
-        {
-            api_client.setUrl(URL_HOST);
+        else {
+            api_client.setUrl(_URL_HOST);
             api_client.setTimeout(_TIMEOUT_VALUE);
         }
 
+        // change color bg
+        try {
+            getWindow().getDecorView().setBackgroundColor(Color.parseColor(_COLOR_BG));
+        } 
+        catch (IllegalArgumentException e) {
+            getWindow().getDecorView().setBackgroundColor(Color.BLACK);
+        }
+
+        // check api status
         new API_CheckStatus().execute();
     }
 
@@ -92,12 +132,13 @@ public class MainActivity extends Activity
 
             button_refresh_api.setEnabled(false);
             text_status.setText("Connecting...");
+            text_count.setText("");
         }
 
         @Override
         protected Boolean doInBackground(Void... voids)
         {
-            button_refresh_api.setEnabled(false);
+            //button_refresh_api.setEnabled(false);
             String jsonResponse = api_client.get("api/status");
 
             if (jsonResponse == null) {
@@ -107,6 +148,8 @@ public class MainActivity extends Activity
             try {
                 JSONObject json = new JSONObject(jsonResponse);
                 int status = json.getInt("status");
+                count = json.getLong("count");
+                hostversion = json.getInt("hostversion");
 
                 return status == 1;
             }
@@ -122,12 +165,18 @@ public class MainActivity extends Activity
         protected void onPostExecute(Boolean ok)
         {
             super.onPostExecute(ok);
-            button_refresh_api.setEnabled(true);
+            if (hostversion != GlobalVariables._CLIENT_VERSION) // check if version matches; if not then uhh... show warning!
+                Toast.makeText(MainActivity.this, "Version Mismatch!\nExpected " + GlobalVariables._CLIENT_VERSION + " but host sent " + hostversion, Toast.LENGTH_LONG).show();
 
-            if (ok) {
-                text_status.setText("Connected!");
-            } else {
+            button_refresh_api.setEnabled(true);
+            
+            if (ok) { // connected to the host
+                text_status.setText("Connected!\n");
+                text_count.setText(Long.toString(count));
+            }
+            else { // connectedn't to the host
                 text_status.setText("Oh uh! Host is unavailable due to a timeout.");
+                text_count.setText("");
             }
         }
     }

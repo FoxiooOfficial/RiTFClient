@@ -1,5 +1,6 @@
 bin/
 gen/
+.vscode/
 
 .local.properties
 local.properties

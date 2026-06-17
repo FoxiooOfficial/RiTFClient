@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+    >
+        <!-- url -->
+        <TextView
+            android:text="Build version: 1\n
+Host version support: 1\n
+\n
+The &quot;RiTF&quot; project created by Foxioo;\n
+RiTF is a Client and Host applications that allows you to get photos/videos from local server (Host) with tags that can be displayed on old Android devices (Froyo 2.2+);\n
+Tested on LG E400 with Android 4.0.4 (Ice Cream Sandwich)\n
+\n
+A concept borrowed from Danbooru: https://danbooru.donmai.us/ (Warning! NSFW/18+ Content!)\n
+\n
+MIT License\n
+\n
+Copyright (c) 2026 Foxioo\n
+\n
+Permission is hereby granted, free of charge, to any person obtaining a copy\n
+of this software and associated documentation files (the &quot;Software&quot;), to deal\n
+in the Software without restriction, including without limitation the rights\n
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n
+copies of the Software, and to permit persons to whom the Software is\n
+furnished to do so, subject to the following conditions:\n
+\n
+The above copyright notice and this permission notice shall be included in all\n
+copies or substantial portions of the Software.\n
+\n
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n
+SOFTWARE.\n
+                            "
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+
+        <!-- buttons! -->
+
+            <Button
+                android:id="@+id/button_back"
+                android:text="Return"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+            />
+
+
+    </LinearLayout>
+
+</ScrollView>

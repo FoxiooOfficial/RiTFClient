@@ -53,7 +53,18 @@
         android:text="Connecting...."
 
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+
+    />
+    <!-- counter -->
+    <TextView
+        android:id="@+id/text_count"
+        android:text=""
+
+        android:textSize="18sp"
+        android:layout_marginBottom="15dp"
         
         android:layout_width="wrap_content" 
         android:layout_height="wrap_content" 
@@ -78,6 +89,14 @@
         <Button
             android:id="@+id/button_settings"
             android:text="Settings"
+
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content"
+        />
+
+        <Button
+            android:id="@+id/button_about"
+            android:text="About"
 
             android:layout_width="wrap_content" 
             android:layout_height="wrap_content"

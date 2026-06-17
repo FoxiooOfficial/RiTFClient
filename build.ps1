@@ -6,3 +6,4 @@ ant.bat debug
 
 adb uninstall com.foxioo.ritfclient
 adb install .\bin\RiTFClient-debug.apk
+adb shell am start -n com.foxioo.ritfclient/com.foxioo.ritfclient.MainActivity
