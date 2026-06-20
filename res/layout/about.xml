@@ -7,6 +7,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
+        android:padding="8dp"
     >
         <!-- url -->
         <TextView
@@ -18,6 +19,10 @@ RiTF is a Client and Host applications that allows you to get photos/videos from
 Tested on LG E400 with Android 4.0.4 (Ice Cream Sandwich)\n
 \n
 A concept borrowed from Danbooru: https://danbooru.donmai.us/ (Warning! NSFW/18+ Content!)\n
+\n
+The characters used to display the amount of content from Hosta are from the &quot;Nekomimi Clock&quot; app created by Sister-Glasses; artist: Kusaka Kokage
+More info here: https://web.archive.org/web/20041019215840/http://haka.sakura.ne.jp/neko/
+\n
 \n
 MIT License\n
 \n

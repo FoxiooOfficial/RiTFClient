@@ -7,6 +7,7 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" 
+        android:padding="8dp"
     >
         <!-- url -->
         <TextView
@@ -17,7 +18,7 @@
         <EditText
             android:id="@+id/edittext_url"
             android:inputType="textUri"
-            android:hint="http://192.168.33.20:5000/"
+            android:hint="http://192.168.33.16:5000/"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
         />
@@ -67,6 +68,36 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
         />
+        <!-- text color -->
+        <TextView
+            android:text="Text color (in HEX):"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+        <EditText
+            android:id="@+id/edittext_colortext"
+            android:hint="#FFFFFF"
+            android:inputType="text"
+            android:maxLength="7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+
+        <!-- Quality -->
+        <TextView
+            android:text="Quality scale for downloaded media:"
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
+        <EditText
+            android:id="@+id/edittext_qualitydownload"
+            android:hint="80"
+            android:inputType="number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        />
 
         <!-- buttons! -->
         <!--
@@ -80,7 +111,7 @@
             <Button
                 android:id="@+id/button_deafult"
                 android:text="Restore defaults and exit"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
             />

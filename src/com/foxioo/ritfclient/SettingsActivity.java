@@ -17,6 +17,8 @@ public class SettingsActivity extends Activity
     private EditText edit_timeout; // timeout (in milisecounds);
     private EditText edit_limit; // gallery display limit;
     private EditText edit_colorbg; // background color (in hex);
+    private EditText edit_colortext; // background text (in hex);
+    private EditText edit_qualitydownload; // quality scale for downloaded media
 
     private Button button_deafult; // reset to default
     private Button button_exit; // exit settings
@@ -45,6 +47,11 @@ public class SettingsActivity extends Activity
         edit_colorbg = (EditText)findViewById(R.id.edittext_colorbg);
         edit_colorbg.setText(prefs.getString("settings_color_bg", GlobalVariables._COLOR_BG));
 
+        edit_colortext = (EditText)findViewById(R.id.edittext_colortext);
+        edit_colortext.setText(prefs.getString("settings_color_text", GlobalVariables._COLOR_TEXT));
+
+        edit_qualitydownload = (EditText)findViewById(R.id.edittext_qualitydownload);
+        edit_qualitydownload.setText(String.valueOf(prefs.getInt("settings_quality_download", GlobalVariables._QUALITY)));
 
         button_deafult = (Button)findViewById(R.id.button_deafult);
         button_exit = (Button)findViewById(R.id.button_exit);
@@ -61,6 +68,8 @@ public class SettingsActivity extends Activity
                 editor.putInt("settings_timeout", GlobalVariables._TIMEOUT_VALUE);
                 editor.putInt("settings_limit_post", GlobalVariables._LIMIT_POST);
                 editor.putString("settings_color_bg", GlobalVariables._COLOR_BG);
+                editor.putString("settings_color_text", GlobalVariables._COLOR_TEXT);
+                editor.putInt("settings_quality_download", GlobalVariables._QUALITY);
 
                 editor.commit();
 
@@ -128,27 +137,70 @@ public class SettingsActivity extends Activity
                         
                     editor.putInt("settings_limit_post", limit_var);
 
-                    // color
-                    String color_var = edit_colorbg.getText().toString().trim();
+                    // color background
+                    String color_bg_var = edit_colorbg.getText().toString().trim();
                     
-                        if (color_var.length() == 0) {
+                        if (color_bg_var.length() == 0) {
                             edit_colorbg.setError("Enter HEX color!");
                             return;
                         }
 
-                        if (!color_var.startsWith("#")) {
-                            color_var = "#" + color_var;
+                        if (!color_bg_var.startsWith("#")) {
+                            color_bg_var = "#" + color_bg_var;
                         }
 
                         try {
-                            Color.parseColor(color_var); 
+                            Color.parseColor(color_bg_var); 
                         }
                         catch (IllegalArgumentException e) {
                             edit_colorbg.setError("Invalid HEX format for the background color!");
                             return; 
                         }
 
-                    editor.putString("settings_color_bg", color_var);
+                    editor.putString("settings_color_bg", color_bg_var);
+
+                    // color text
+                    String color_text_var = edit_colortext.getText().toString().trim();
+                    
+                        if (color_text_var.length() == 0) {
+                            edit_colortext.setError("Enter HEX color!");
+                            return;
+                        }
+
+                        if (!color_text_var.startsWith("#")) {
+                            color_text_var = "#" + color_text_var;
+                        }
+
+                        try {
+                            Color.parseColor(color_text_var); 
+                        }
+                        catch (IllegalArgumentException e) {
+                            edit_colortext.setError("Invalid HEX format for the text color!");
+                            return; 
+                        }
+
+                    editor.putString("settings_color_text", color_text_var);
+                
+                    // quality
+                    int quality_var;
+
+                        try {
+                            String quality_str = edit_qualitydownload.getText().toString();
+
+                            if (quality_str.length() == 0) {
+                                edit_qualitydownload.setError("Enter limit value!");
+                                return;
+                            }
+                            
+                            quality_var = Integer.parseInt(quality_str);
+                            quality_var = Math.max(5, Math.min(100, quality_var));
+                        }
+                        catch (NumberFormatException e) {
+                            edit_limit.setError("Invalid limit value!");
+                            return;
+                        }
+                        
+                    editor.putInt("settings_quality_download", quality_var);
 
                 editor.commit();
 
