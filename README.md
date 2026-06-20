@@ -7,6 +7,8 @@ RiTF is a Client-Host application that allows you to get photos/videos with tags
 
 It is not recommended to place the Host on a public network. Communication between the Client and the Host uses unencrypted HTTP (for compatibility reasons), so it is possible that someone could intercept the Client’s requests or photos sent by the Host. Use a LAN connection instead.
 
+<img src="https://github.com/FoxiooOfficial/RiTFClient/blob/main/readme/screen0.png" alt="Main page">
+
 # Project Requirements:
 *RiTF requires an older Android/Java environment and is not compatible with newer versions.*
 
